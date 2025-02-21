@@ -1,32 +1,32 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
-import styles from "./Home.module.css";
-import { getDate } from "../../services/functions";
-import LogoutButton from "../../components/Logout/Logout";
+import { useEffect, useState } from "react";
 import Loader from "../../components/Loader/Loader";
+import LogoutButton from "../../components/Logout/Logout";
+import { getDate } from "../../services/functions";
+import styles from "./Home.module.css";
 function OldHome() {
   const [articles, setArticles] = useState(null);
   const [query, setQuery] = useState("india");
   const deImage =
     "https://www.euractiv.com/wp-content/uploads/sites/2/2014/03/news-default.jpeg";
-    useEffect(() => {
-      const fetchNews = async () => {
-        const url = `https://news-service-api.vercel.app/news?date=${getDate()}&category=${query}`;
-        try {
-          const response = await axios.get(url);
-          const sortedArticles = response.data.data.sort(
-            (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
-          );
-          setArticles(sortedArticles);
-        } catch (error) {
-          console.error("Error fetching the news:", error);
-          axios.post("http://localhost:3000/news/save")
-        }
-      };
-    
-      fetchNews();
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [query]);
+  useEffect(() => {
+    const fetchNews = async () => {
+      const url = `https://news-service-api.vercel.app/news?date=${getDate()}&category=${query}`;
+      try {
+        const response = await axios.get(url);
+        const sortedArticles = response.data.data.sort(
+          (a, b) => new Date(b.publishedAt) - new Date(a.publishedAt)
+        );
+        setArticles(sortedArticles);
+      } catch (error) {
+        console.error("Error fetching the news:", error);
+        axios.post("http://localhost:3000/news/save");
+      }
+    };
+
+    fetchNews();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [query]);
   if (!articles) {
     return <Loader />;
   }
@@ -78,12 +78,17 @@ function OldHome() {
                 </p>
               </li>
               <li>
-                <button onClick={()=>{axios.post(" ")}}>Update news</button>
+                <button
+                  onClick={() => {
+                    axios.post(" ");
+                  }}
+                >
+                  Update news
+                </button>
               </li>
               <li>
                 <LogoutButton />
               </li>
-
             </ul>
           </nav>
         </div>
@@ -103,7 +108,11 @@ function OldHome() {
               .filter((article) => article.title != "[Removed]")
               .filter((article) => article.urlToImage)
               .map((article, index) => (
-                <div key={index} className={styles.card} title={article.content}>
+                <div
+                  key={index}
+                  className={styles.card}
+                  title={article.content}
+                >
                   <img
                     src={article.urlToImage || deImage}
                     alt={article.title}
@@ -124,4 +133,4 @@ function OldHome() {
   );
 }
 
-export default OldHome
+export default OldHome;
