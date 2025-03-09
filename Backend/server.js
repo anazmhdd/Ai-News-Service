@@ -17,7 +17,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 const fetchNewsByCategory = async (category) => {
   const today = format(new Date(), "yyyy-MM-dd");
 
+  console.log(`Scraping news for category: ${category} on ${today}`);
+
   const newsData = await scrapNews(category);
+
+  console.log(`Scraped ${newsData.length} articles for ${category}`);
 
   return newsData.map((article) => ({
     publishedAt: today,
@@ -35,18 +39,22 @@ app.post("/news/save", async (req, res) => {
 
     const internationalNews = await fetchNewsByCategory("lifestyle");
     const nationalNews = await fetchNewsByCategory("india");
-    const businessyNews = await fetchNewsByCategory("business");
+    const businessNews = await fetchNewsByCategory("business");
     const keralaNews = await fetchNewsByCategory("kerala");
     const educationNews = await fetchNewsByCategory("education");
     const politicalNews = await fetchNewsByCategory("political-pulse");
+
     const allArticles = [
       ...internationalNews,
       ...nationalNews,
-      ...businessyNews,
+      ...businessNews,
       ...keralaNews,
       ...educationNews,
       ...politicalNews,
     ];
+
+    console.log(`Fetched ${allArticles.length} articles for ${todayDate}`);
+    console.log("Sample article:", allArticles[0]);
 
     if (allArticles.length > 0) {
       await db.collection("news").doc(todayDate).set({
@@ -79,44 +87,57 @@ app.get("/news", async (req, res) => {
   try {
     const { date, category } = req.query;
 
+    console.log(`Received request: Date = ${date}, Category = ${category}`);
+
     if (!date) {
       return res
         .status(400)
-        .send({ error: "Date query parameter is required" });
+        .json({ error: "Date query parameter is required" });
     }
 
     const formattedDate = format(new Date(date), "yyyy-MM-dd");
+    console.log(`Fetching news for formatted date: ${formattedDate}`);
+
     const newsDoc = await db.collection("news").doc(formattedDate).get();
+    console.log(
+      "Firestore Response: ",
+      newsDoc.exists ? "Document found" : "No document"
+    );
 
-    if (newsDoc.exists) {
-      let articles = newsDoc.data().articles;
-
-      if (category && category.toLowerCase() !== "all") {
-        articles = articles.filter(
-          (article) => article.category === category.toLowerCase()
-        );
-      }
-
-      if (articles.length > 0) {
-        res.send({
-          message: `News data for ${formattedDate} retrieved successfully`,
-          data: articles,
-        });
-      } else {
-        res.status(404).send({
-          message: `No news data found for the category: ${category}`,
-        });
-      }
-    } else {
-      res
+    if (!newsDoc.exists) {
+      console.log(`No news found for date: ${formattedDate}`);
+      return res
         .status(404)
-        .send({ message: `No news data found for the date: ${formattedDate}` });
+        .json({ message: `No news found for date: ${formattedDate}` });
+    }
+
+    let articles = newsDoc.data().articles;
+    console.log(`Total articles found: ${articles.length}`);
+
+    if (category && category.toLowerCase() !== "all") {
+      articles = articles.filter(
+        (article) => article.category === category.toLowerCase()
+      );
+      console.log(`Filtered articles count: ${articles.length}`);
+    }
+
+    if (articles.length > 0) {
+      return res.json({
+        message: `News for ${formattedDate} retrieved`,
+        data: articles,
+      });
+    } else {
+      console.log(`No news found for category: ${category}`);
+      return res
+        .status(404)
+        .json({ message: `No news found for category: ${category}` });
     }
   } catch (error) {
     console.error("Error retrieving news:", error);
-    res.status(500).send({ error: "Failed to retrieve news" });
+    return res.status(500).json({ error: "Failed to retrieve news" });
   }
 });
+
 app.get("/news/by-title", async (req, res) => {
   try {
     const { title } = req.query;
