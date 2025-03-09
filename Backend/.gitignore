@@ -27,3 +27,5 @@ dist-ssr
 
 firebaseServiceAccountKey.json
 firebaseServiceAccountKey-local.json
+
+firebase.js
