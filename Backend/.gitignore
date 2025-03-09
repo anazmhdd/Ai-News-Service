@@ -24,8 +24,3 @@ dist-ssr
 *.sw?
 .env
 
-
-firebaseServiceAccountKey.json
-firebaseServiceAccountKey-local.json
-firebaseServiceAccount.json
-firebase.js
