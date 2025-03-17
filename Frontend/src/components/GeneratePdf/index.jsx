@@ -1,14 +1,14 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
-import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import jsPDF from "jspdf";
+import { useEffect, useState } from "react";
 import "./index.css";
 import "./pdfstyle.css";
 
 // Editable Newspaper UI Component
 const NewspaperPDF = ({ news }) => {
   const [newsData, setNewsData] = useState([]);
-  
+
   const currentDate = new Date().toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -18,7 +18,7 @@ const NewspaperPDF = ({ news }) => {
   useEffect(() => {
     const uniqueCategories = new Set();
     const categorizedNews = [];
-    
+
     // Shuffle the news array
     const shuffledNews = [...news].sort(() => 0.5 - Math.random());
 
@@ -106,11 +106,15 @@ const NewspaperPDF = ({ news }) => {
                     </div>
                     <div className="col1-row1-col2-row2">
                       <div className="col1-row1-col2-row2-col1">
-                        <p>{newsData[1]?.content.slice(0, 1100) || "News 2 Description"}</p>
+                        <p>
+                          {newsData[1]?.content.slice(0, 1100) ||
+                            "News 2 Description"}
+                        </p>
                       </div>
                       <div className="col1-row1-col2-row2-col2">
                         <p>
-                          {newsData[1]?.content.slice(1100) || "News 2 Description Continuation"}
+                          {newsData[1]?.content.slice(1100) ||
+                            "News 2 Description Continuation"}
                         </p>
                       </div>
                     </div>
@@ -125,10 +129,16 @@ const NewspaperPDF = ({ news }) => {
                     </div>
                     <div className="col1-row2-col1-row2">
                       <div className="col1-row2-col1-row2-col1">
-                        <p>{newsData[2]?.content.slice(0, 1496) || "News 3 Description"}</p>
+                        <p>
+                          {newsData[2]?.content.slice(0, 1496) ||
+                            "News 3 Description"}
+                        </p>
                       </div>
                       <div className="col1-row2-col1-row2-col2">
-                        <p>{newsData[2]?.content.slice(1497) || "News 3 Description Continuation"}</p>
+                        <p>
+                          {newsData[2]?.content.slice(1497) ||
+                            "News 3 Description Continuation"}
+                        </p>
                       </div>
                     </div>
                   </div>

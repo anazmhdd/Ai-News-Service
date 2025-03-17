@@ -1,30 +1,10 @@
 .loginContainer {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh; /* Full viewport height */
-  width: 100vw; /* Full viewport width */
-  background-color: rgba(255, 255, 255, 0.856);
-  padding: 20px;
-  color: black;
-}
-
-html,
-body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden; /* ✅ Hides overflow */
-}
-
-.loginBox {
-  width: 100%;
-  max-width: 400px; /* Adjust width for responsiveness */
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #f0f0f0;
 }
 
 form {
@@ -37,53 +17,31 @@ form {
 }
 
 .formGroup {
-  margin-bottom: 15px;
-  text-align: left;
+  margin-bottom: 10px;
 }
 
 .label {
-  display: block;
   margin-bottom: 5px;
+  font-weight: bold;
 }
 
 .input {
-  width: 94%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  color: black;
+  width: 100%;
 }
 
 .button {
-  width: 50%;
-  align-self: center;
   padding: 10px;
   border: none;
   border-radius: 5px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  font-size: 16px;
+  width: 100%;
 }
 
 .button:hover {
   background-color: #0056b3;
-}
-
-/* ✅ Responsive Design */
-@media (max-width: 480px) {
-  .loginBox {
-    padding: 15px;
-    max-width: 90%;
-  }
-
-  .input {
-    padding: 8px;
-  }
-
-  .button {
-    padding: 8px;
-    font-size: 14px;
-  }
 }

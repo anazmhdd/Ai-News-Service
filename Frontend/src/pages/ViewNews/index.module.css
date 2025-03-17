@@ -110,115 +110,114 @@
   }
    */
 
-   .newsViewContainer{
-    display: flex;
-    height: fit-content;/*changes needed*/
-    max-width: 100%;
-    flex-direction: row;
-    gap: 5%;
-
-   }
-   .backButton {
-    position: fixed; 
-    top: 20px;
-    left: 20px;
-    background:white;
-    color: var(--primaryclr);
-    border: 1px solid transparent;
-    border-radius: 5px;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 1rem;
-    z-index: 1000;
-  }
-  
-  .backButton:hover {
-    box-shadow: 0px 0px 10px rgb(239, 238, 238);
-    border:1px solid var(--primaryclr)
-  }
-   .mainContent{
-    /* background-color: red; */
-    height: fit-content;
-    width: 70%;
-   }   
-   .mainContent .imageContainer{
-      width: 100%;
-      overflow: hidden;
-   }
-   .mainContent .imageContainer img{
-    width: 100%;
-    transition: .3s;
-   }
-   .mainContent .imageContainer img:hover{
-    scale: 1.02;
-   }
-   .sideBar{
-    /* background-color: green; */
-    width: 25%;
-   }
-   .titleContainer{
-    padding: 1rem 0; 
-   }
-   .titleContainer h1{
-    font-size: 2.5rem;
-    letter-spacing: 0px;
-    font-weight: 600;
-    color: var(--black);
-   }
-   .newsInfo{
-    display: flex;
-    gap: 1rem;
-    padding: .5rem 0;
-    position: relative;
-   }
-   .newsInfo p{
-    font-family: inter;
-    font-weight: 300;
-    color: var(--gray);
-    font-size: .8rem;
-    display: flex;
-    align-items: center;
-  }
-.newsInfo .date .calendarMonthIcon{
-    font-size: 1rem;
-    color: var(--gray);
-    margin-right: 10px;
+.newsViewContainer {
+  display: flex;
+  height: fit-content; /*changes needed*/
+  max-width: 100%;
+  flex-direction: row;
+  gap: 5%;
+}
+.backButton {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background: white;
+  color: var(--primaryclr);
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 1000;
 }
 
-.newsInfo p .accessTimeIcon{
-  font-size: 1rem;
-  color: var(--gray);
-  margin-right: 5px;
+.backButton:hover {
+  box-shadow: 0px 0px 10px rgb(239, 238, 238);
+  border: 1px solid var(--primaryclr);
 }
-.newsInfo p .translateIcon{
-  font-size: 1rem;
-  color: var(--gray);
-  margin-right: 5px;
+.mainContent {
+  /* background-color: red; */
+  height: fit-content;
+  width: 70%;
 }
-.newsInfo p .autoAwesomeIcon{
-  font-size: 1rem;
-  color: var(--gray);
-  margin-right: 5px;
+.mainContent .imageContainer {
+  width: 100%;
+  overflow: hidden;
 }
-.newsInfo p button{
+.mainContent .imageContainer img {
+  width: 100%;
+  transition: 0.3s;
+}
+.mainContent .imageContainer img:hover {
+  scale: 1.02;
+}
+.sideBar {
+  /* background-color: green; */
+  width: 25%;
+}
+.titleContainer {
+  padding: 1rem 0;
+}
+.titleContainer h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0px;
+  font-weight: 600;
+  color: var(--black);
+}
+.newsInfo {
+  display: flex;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  position: relative;
+}
+.newsInfo p {
+  font-family: inter;
+  font-weight: 300;
+  color: var(--gray);
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
 }
-.newsInfo .readButton{
+.newsInfo .date .calendarMonthIcon {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-right: 10px;
+}
+
+.newsInfo p .accessTimeIcon {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-right: 5px;
+}
+.newsInfo p .translateIcon {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-right: 5px;
+}
+.newsInfo p .autoAwesomeIcon {
+  font-size: 1rem;
+  color: var(--gray);
+  margin-right: 5px;
+}
+.newsInfo p button {
+  display: flex;
+  align-items: center;
+}
+.newsInfo .readButton {
   position: absolute;
   right: 0;
 }
-.newsInfo p button .readIcon{
+.newsInfo p button .readIcon {
   font-size: 1.2rem;
   color: var(--gray);
   margin-left: 5px;
 }
-.select{
+.select {
   background-color: transparent;
   outline: none;
   max-width: 100px;
 }
-.mainContent .newsContent{
+.mainContent .newsContent {
   font-size: 1.1rem;
   color: var(--black);
   text-align: justify;

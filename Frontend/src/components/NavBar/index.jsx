@@ -5,10 +5,10 @@ import logo from "../../assets/Home/logo.svg";
 // import EmailIcon from "@mui/icons-material/Email";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
+import MenuIcon from "@mui/icons-material/Menu";
+import SearchIcon from "@mui/icons-material/Search";
 import XIcon from "@mui/icons-material/X";
 import YouTubeIcon from "@mui/icons-material/YouTube";
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
 import CustomDropdown from "../Dropdown";
 import LogoutButton from "../Logout/Logout";
 
@@ -20,7 +20,7 @@ function NavBar() {
           {/* <button>
             Subscribe <EmailIcon className={styles.mailIcon} />
           </button> */}
-          <LogoutButton/>
+          <LogoutButton />
         </div>
         <a href="/" className={styles.logoContainer}>
           <img src={logo} alt="" />
@@ -51,17 +51,17 @@ function NavBar() {
           <MenuIcon />
         </div>
         <div className={styles.categoriesContainer}>
-       
-        <CustomDropdown category={"India"}/>
-        <CustomDropdown category={"Kerala"}/>
-        <CustomDropdown category={"Education"} />
-        <CustomDropdown category={"Lifestyle"}/>
-        <CustomDropdown category={"Politics"}/>
+          <CustomDropdown category={"India"} />
+          <CustomDropdown category={"Kerala"} />
+          <CustomDropdown category={"Education"} />
+          <CustomDropdown category={"Lifestyle"} />
+          <CustomDropdown category={"Politics"} />
         </div>
         <div className={styles.searchContainer}>
-            <div className={styles.inputContainer}>
-              <SearchIcon className={styles.searchIcon}/> <input type="text" placeholder="Search"/>
-            </div>
+          <div className={styles.inputContainer}>
+            <SearchIcon className={styles.searchIcon} />{" "}
+            <input type="text" placeholder="Search" />
+          </div>
         </div>
       </div>
       <hr />

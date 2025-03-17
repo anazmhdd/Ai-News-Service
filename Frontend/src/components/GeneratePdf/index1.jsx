@@ -1,13 +1,13 @@
-import { useState } from "react";
 import {
+  Document,
+  Image,
   Page,
+  PDFDownloadLink,
+  StyleSheet,
   Text,
   View,
-  Document,
-  StyleSheet,
-  Image,
-  PDFDownloadLink,
 } from "@react-pdf/renderer";
+import { useState } from "react";
 import "./index.css";
 
 // Define styles for the PDF document
@@ -67,34 +67,33 @@ const NewspaperPDF = ({ newsData }) => {
 
   return (
     <Document>
-    <Page size={[594, 841]} style={pdfStyles.page}>
-      {/* Newspaper Heading */}
-      <Text style={{ fontSize: 24, textAlign: 'center', marginBottom: 20 }}>
-        News Scade
-      </Text>
-      <Text style={{ fontSize: 14, textAlign: 'center', marginBottom: 20 }}>
-        Date: {new Date().toLocaleDateString()} {/* Add current date */}
-      </Text>
-      
-      <View style={pdfStyles.grid}>
-        {limitedNewsData.map((article, articleIndex) => (
-          <View key={articleIndex} style={pdfStyles.card}>
-            <Text style={pdfStyles.headline}>{article.title}</Text>
-            <Text style={pdfStyles.subHeadline}>
-              {article.category} - {article.publishedAt}
-            </Text>
-            {article.urlToImage && (
-              <Image style={pdfStyles.image} src={article.urlToImage} />
-            )}
-            <Text style={pdfStyles.article}>{article.description}</Text>
-            <Text style={pdfStyles.article}>{article.content}</Text>
-          </View>
-        ))}
-      </View>
-      <Text style={pdfStyles.footer}>The Daily Times</Text>
-    </Page>
-  </Document>
+      <Page size={[594, 841]} style={pdfStyles.page}>
+        {/* Newspaper Heading */}
+        <Text style={{ fontSize: 24, textAlign: "center", marginBottom: 20 }}>
+          News Scade
+        </Text>
+        <Text style={{ fontSize: 14, textAlign: "center", marginBottom: 20 }}>
+          Date: {new Date().toLocaleDateString()} {/* Add current date */}
+        </Text>
 
+        <View style={pdfStyles.grid}>
+          {limitedNewsData.map((article, articleIndex) => (
+            <View key={articleIndex} style={pdfStyles.card}>
+              <Text style={pdfStyles.headline}>{article.title}</Text>
+              <Text style={pdfStyles.subHeadline}>
+                {article.category} - {article.publishedAt}
+              </Text>
+              {article.urlToImage && (
+                <Image style={pdfStyles.image} src={article.urlToImage} />
+              )}
+              <Text style={pdfStyles.article}>{article.description}</Text>
+              <Text style={pdfStyles.article}>{article.content}</Text>
+            </View>
+          ))}
+        </View>
+        <Text style={pdfStyles.footer}>The Daily Times</Text>
+      </Page>
+    </Document>
   );
 };
 
@@ -177,9 +176,7 @@ const NewsPaperGenerator = ({ news }) => {
                 </div>
               </div>
             ))}
-            <div className="footer">
-              Page {pageIndex + 1} - The Daily Times
-            </div>
+            <div className="footer">Page {pageIndex + 1} - The Daily Times</div>
           </div>
         ))}
       </div>

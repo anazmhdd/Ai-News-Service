@@ -1,23 +1,23 @@
-import { useParams, useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import StopCircleIcon from "@mui/icons-material/StopCircle";
+import TranslateIcon from "@mui/icons-material/Translate";
+import VolumeUpIcon from "@mui/icons-material/VolumeUp";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import axios from "axios";
-import styles from "./index.module.css"; // Ensure this CSS module is correctly imported
-import { getDate, estimateReadingTime } from "../../services/functions"; // Ensure this function is correctly defined
+import { useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Loader, { Loader3, Loader5 } from "../../components/Loader/Loader";
 import NavBar from "../../components/NavBar";
-import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import TranslateIcon from "@mui/icons-material/Translate";
-import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
-import VolumeUpIcon from '@mui/icons-material/VolumeUp';
-import StopCircleIcon from "@mui/icons-material/StopCircle";
 import { NewsCard3 } from "../../components/NewsCards";
-import SummariseText from "../../services/summarise";
-import { translateText } from "../../services/translate";
 import TranslationLanguages from "../../services/Data";
+import { estimateReadingTime, getDate } from "../../services/functions"; // Ensure this function is correctly defined
+import SummariseText from "../../services/summarise";
 import textToSpeech from "../../services/textToSpeech";
-import AOS from 'aos'
-import "aos/dist/aos.css";
+import { translateText } from "../../services/translate";
+import styles from "./index.module.css"; // Ensure this CSS module is correctly imported
 
 function NewsViewPage() {
   const { newsTitle, date } = useParams(); // Destructure both title and date from params
@@ -33,7 +33,7 @@ function NewsViewPage() {
 
   useEffect(() => {
     const fetchNews = async () => {
-      AOS.init({ duration: 750 })
+      AOS.init({ duration: 750 });
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API}/news/by-title`,
@@ -171,14 +171,18 @@ function NewsViewPage() {
                 </button>
               </p>
               <p className={styles.readButton}>
-                <button onClick={handleSpeak} >
+                <button onClick={handleSpeak}>
                   {isSpeaking ? (
                     <>
-                      Read article <StopCircleIcon className={styles.readIcon} style={{color:"red"}} />
+                      Read article{" "}
+                      <StopCircleIcon
+                        className={styles.readIcon}
+                        style={{ color: "red" }}
+                      />
                     </>
                   ) : (
                     <>
-                      Read article <VolumeUpIcon className={styles.readIcon}  />
+                      Read article <VolumeUpIcon className={styles.readIcon} />
                     </>
                   )}
                 </button>

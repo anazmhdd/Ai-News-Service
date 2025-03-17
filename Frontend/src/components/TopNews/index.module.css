@@ -6,14 +6,13 @@
   gap: 1.5rem;
   height: fit-content;
   margin-top: 3rem;
-
 }
 #topNews .topNewsCol1 {
   width: 50%;
   /* background-color: rgb(209, 236, 209); */
   height: 100%;
 }
-.eachSlideEffect{
+.eachSlideEffect {
   height: 100%;
 }
 .eachSlideEffect > div {
@@ -26,9 +25,9 @@
   position: relative;
   padding: 1rem;
 }
-.eachSlideEffect > div::after{
-  content: '';
-  background: linear-gradient(180deg,rgba(255, 255, 255, 0),rgba(0, 0, 0, 1));
+.eachSlideEffect > div::after {
+  content: "";
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(0, 0, 0, 1));
   position: absolute;
   width: 100%;
   height: 100%;
@@ -36,65 +35,64 @@
   left: 0;
 }
 
-.slideContentContainer{
-padding: 1rem;
-/* background-color: rgb(189, 243, 74); */
-display: flex;
-flex-direction: column;
-gap: 1rem;
-transform: translateY(110px);
-transition: .5s;
-position: relative;
-z-index: 2;
-
+.slideContentContainer {
+  padding: 1rem;
+  /* background-color: rgb(189, 243, 74); */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transform: translateY(110px);
+  transition: 0.5s;
+  position: relative;
+  z-index: 2;
 }
-.eachSlideEffect:hover .slideContentContainer{
+.eachSlideEffect:hover .slideContentContainer {
   transform: translateY(0);
 }
-.slideContentContainer .category{
-  background-color:rgba(255, 255, 255, 0.17);
+.slideContentContainer .category {
+  background-color: rgba(255, 255, 255, 0.17);
   width: fit-content;
   padding: 2px 8px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   color: rgb(217, 214, 214);
   display: flex;
   align-items: center;
   gap: 3px;
 }
-.slideContentContainer .category svg{
-  font-size: .9rem;
+.slideContentContainer .category svg {
+  font-size: 0.9rem;
 }
-.slideContentContainer h1{
+.slideContentContainer h1 {
   font-size: 1.4rem;
   color: white;
 }
-.slideContentContainer p{
+.slideContentContainer p {
   font-family: inter;
   font-weight: 300;
   color: white;
-  font-size: .8rem;
+  font-size: 0.8rem;
   display: flex;
   align-items: center;
 }
-.slideContentContainer p .calendarMonthIcon{
+.slideContentContainer p .calendarMonthIcon {
   font-size: 1rem;
   color: var(--secondaryclr);
   margin-right: 10px;
 }
-.hrline{
+.hrline {
   border: 1px solid rgba(255, 255, 255, 0.377);
   margin: 1rem 0;
 }
-.slideContentContainer button{
+.slideContentContainer button {
   background-color: var(--primaryclr);
   width: fit-content;
-  padding: .5rem 1rem ;
+  padding: 0.5rem 1rem;
   color: white;
 }
-.slideContentContainer button .arrowForwardRoundedIcon{
+.slideContentContainer button .arrowForwardRoundedIcon {
   font-size: 1rem;
 }
-.topNewsCol2{
+.topNewsCol2 {
   display: flex;
   gap: 1rem;
   width: 100%;

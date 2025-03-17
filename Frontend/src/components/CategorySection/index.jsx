@@ -1,26 +1,24 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import styles from './index.module.css';
+import AOS from "aos";
+import "aos/dist/aos.css";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { getDate, shuffleArray } from "../../services/functions";
 import { NewsCard2 } from "../NewsCards";
-import { getDate,shuffleArray} from '../../services/functions'; 
-  import AOS from 'aos'
-  import "aos/dist/aos.css";
-export default function CategorySection({cat}) {
+import styles from "./index.module.css";
+export default function CategorySection({ cat }) {
   const [newsData2, setNewsData2] = useState([]);
- 
+
   // const getDate = () => {
   //   const today = new Date();
   //   console.log(today);
-    
+
   //   return today.toISOString().split('T')[0]; // returns date in yyyy-mm-dd format
   // };
 
   useEffect(() => {
-      AOS.init({ duration: 750 });
+    AOS.init({ duration: 750 });
     const fetchNews = async () => {
-    
-      
       try {
         const response = await axios.get(`${import.meta.env.VITE_API}/news`, {
           params: {
@@ -40,7 +38,7 @@ export default function CategorySection({cat}) {
   return (
     <div className={styles.categorySection}>
       <div className={styles.heading}>
-        <h1>{cat || "Recent News"}</h1> 
+        <h1>{cat || "Recent News"}</h1>
         <span></span>
       </div>
       <div className={styles.newsContainer}>

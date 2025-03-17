@@ -1,139 +1,138 @@
 /* Main container styles */
 .manageContainer {
-    padding: 20px;
-  }
-  
-  .manageHeading {
-    font-size: 28px;
-    margin-bottom: 20px;
-  }
-  
-  /* Card container styles */
-  .cardContainer {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 20px;
-  }
-  
-  /* Promotional card styles */
-  .promoCard {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s;
-    cursor: pointer;
-  }
-  
-  .promoCard:hover {
-    transform: scale(1.05);
-  }
-  
-  .promoTitle {
-    font-size: 20px;
-    margin-bottom: 10px;
-  }
-  
-  .promoContent {
-    font-size: 16px;
-    margin-bottom: 10px;
-  }
-  
-  .promoDate {
-    font-size: 14px;
-    color: #888;
-  }
-  
-  .promoImage {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin: 10px 0;
-  }
-  
-  .statusLabel {
-    font-weight: bold;
-  }
-  
-  /* Modal styles */
-  .modalOverlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .modalContent {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: 80%;
-    max-width: 600px;
-    max-height: 80vh; /* Set a maximum height for the modal */
-    overflow-y: auto; /* Enable vertical scrolling */
-  }
-  
-  .modalTitle {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  .modalDate {
-    font-size: 16px;
-    color: #888;
-  }
-  
-  .modalContentText {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  .modalImage {
-    width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin: 10px 0;
-  }
-  
-  .actionButtons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  
-  .approveButton {
-    background-color: #4CAF50; /* Green */
-    color: white;
-  }
-  
-  .rejectButton {
-    background-color: #f44336; /* Red */
-    color: white;
-  }
-  
-  .button:hover {
-    opacity: 0.9; /* Slight opacity change on hover */
-  }
-  
-  .closeButton {
-    margin-top: 10px;
-    background-color: #ccc;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
+  padding: 20px;
+}
+
+.manageHeading {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+/* Card container styles */
+.cardContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Promotional card styles */
+.promoCard {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  cursor: pointer;
+}
+
+.promoCard:hover {
+  transform: scale(1.05);
+}
+
+.promoTitle {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.promoContent {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.promoDate {
+  font-size: 14px;
+  color: #888;
+}
+
+.promoImage {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.statusLabel {
+  font-weight: bold;
+}
+
+/* Modal styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modalContent {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 80%;
+  max-width: 600px;
+  max-height: 80vh; /* Set a maximum height for the modal */
+  overflow-y: auto; /* Enable vertical scrolling */
+}
+
+.modalTitle {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.modalDate {
+  font-size: 16px;
+  color: #888;
+}
+
+.modalContentText {
+  font-size: 16px;
+  color: #555;
+}
+
+.modalImage {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin: 10px 0;
+}
+
+.actionButtons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.approveButton {
+  background-color: #4caf50; /* Green */
+  color: white;
+}
+
+.rejectButton {
+  background-color: #f44336; /* Red */
+  color: white;
+}
+
+.button:hover {
+  opacity: 0.9; /* Slight opacity change on hover */
+}
+
+.closeButton {
+  margin-top: 10px;
+  background-color: #ccc;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}

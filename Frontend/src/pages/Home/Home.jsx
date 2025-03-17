@@ -4,11 +4,15 @@ import Loader from "../../components/Loader/Loader";
 import LogoutButton from "../../components/Logout/Logout";
 import { getDate } from "../../services/functions";
 import styles from "./Home.module.css";
+
 function OldHome() {
   const [articles, setArticles] = useState(null);
   const [query, setQuery] = useState("india");
+  const [searchTerm, setSearchTerm] = useState(""); // For user input
+
   const deImage =
     "https://www.euractiv.com/wp-content/uploads/sites/2/2014/03/news-default.jpeg";
+
   useEffect(() => {
     const fetchNews = async () => {
       const url = `https://news-service-api.vercel.app/news?date=${getDate()}&category=${query}`;
@@ -20,16 +24,16 @@ function OldHome() {
         setArticles(sortedArticles);
       } catch (error) {
         console.error("Error fetching the news:", error);
-        axios.post("http://localhost:3000/news/save");
       }
     };
 
     fetchNews();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
+
   if (!articles) {
     return <Loader />;
   }
+
   return (
     <div className={styles.App}>
       <header className={styles.header}>
@@ -42,49 +46,16 @@ function OldHome() {
           <nav className={styles.nav}>
             <ul className={styles.navList}>
               <li>
-                <p
-                  onClick={() => {
-                    setQuery("kerala");
-                  }}
-                >
-                  Kerala
-                </p>
+                <p onClick={() => setQuery("kerala")}>Kerala</p>
               </li>
               <li>
-                <p
-                  onClick={() => {
-                    setQuery("india");
-                  }}
-                >
-                  National
-                </p>
+                <p onClick={() => setQuery("india")}>National</p>
               </li>
               <li>
-                <p
-                  onClick={() => {
-                    setQuery("lifestyle");
-                  }}
-                >
-                  Lifestyle
-                </p>
+                <p onClick={() => setQuery("lifestyle")}>Lifestyle</p>
               </li>
               <li>
-                <p
-                  onClick={() => {
-                    setQuery("education");
-                  }}
-                >
-                  education
-                </p>
-              </li>
-              <li>
-                <button
-                  onClick={() => {
-                    axios.post(" ");
-                  }}
-                >
-                  Update news
-                </button>
+                <p onClick={() => setQuery("education")}>Education</p>
               </li>
               <li>
                 <LogoutButton />
@@ -94,35 +65,41 @@ function OldHome() {
         </div>
       </header>
 
-      <div className={styles.showcase}>
-        <div className={styles.container}>
-          <h1>Welcome to AI-Driven News Service</h1>
-          <p>Your one-stop platform for the latest and most accurate news.</p>
-        </div>
+      {/* SEARCH INPUT */}
+      <div className={styles.searchContainer}>
+        <input
+          type="text"
+          placeholder="Search news..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          className={styles.searchInput}
+        />
+        <button
+          onClick={() => {
+            if (searchTerm.trim() !== "") {
+              setQuery(searchTerm.trim());
+            }
+          }}
+          className={styles.searchButton}
+        >
+          Search
+        </button>
       </div>
 
       <div className={styles.container}>
         <section className={styles.newsCardsContainer}>
-          {articles &&
-            articles
-              .filter((article) => article.title != "[Removed]")
-              .filter((article) => article.urlToImage)
-              .map((article, index) => (
-                <div
-                  key={index}
-                  className={styles.card}
-                  title={article.content}
-                >
-                  <img
-                    src={article.urlToImage || deImage}
-                    alt={article.title}
-                  />
-                  <div className={styles.cardContent}>
-                    <h3>{article.title}</h3>
-                    <p>{article.description || "No description available."}</p>
-                  </div>
+          {articles
+            .filter((article) => article.title !== "[Removed]")
+            .filter((article) => article.urlToImage)
+            .map((article, index) => (
+              <div key={index} className={styles.card} title={article.content}>
+                <img src={article.urlToImage || deImage} alt={article.title} />
+                <div className={styles.cardContent}>
+                  <h3>{article.title}</h3>
+                  <p>{article.description || "No description available."}</p>
                 </div>
-              ))}
+              </div>
+            ))}
         </section>
       </div>
 

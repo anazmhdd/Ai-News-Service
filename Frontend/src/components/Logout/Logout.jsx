@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
-import { auth } from '../../services/firebase'; 
-import styles from './styles.module.css'; 
+import { useNavigate } from "react-router-dom";
+import { auth } from "../../services/firebase";
+import styles from "./styles.module.css";
 
 const LogoutButton = () => {
   const navigate = useNavigate();
@@ -8,9 +8,9 @@ const LogoutButton = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      navigate('/login');
+      navigate("/login");
     } catch (error) {
-      console.error('Error logging out:', error);
+      console.error("Error logging out:", error);
     }
   };
 

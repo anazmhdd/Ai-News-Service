@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import { db, storage } from '../../services/firebase'; // Ensure correct import for Firestore and Storage services
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { doc, updateDoc, arrayUnion } from "firebase/firestore"; 
-import styles from './index.module.css'; // Import CSS module
+import { arrayUnion, doc, updateDoc } from "firebase/firestore";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { useState } from "react";
+import { db, storage } from "../../services/firebase"; // Ensure correct import for Firestore and Storage services
+import styles from "./index.module.css"; // Import CSS module
 
 const SubmitNews = () => {
-  const [title, setTitle] = useState('');
-  const [content, setContent] = useState('');
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
   const [image, setImage] = useState(null);
-  const [description, setDescription] = useState('');
-  const [category, setCategory] = useState('');
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState(null);
 
   // Helper function to get today's date in YYYY-MM-DD format
   const getTodayDate = () => {
     const today = new Date();
-    return today.toISOString().split('T')[0]; // YYYY-MM-DD format
+    return today.toISOString().split("T")[0]; // YYYY-MM-DD format
   };
 
   const handleImageChange = (e) => {
@@ -26,8 +26,13 @@ const SubmitNews = () => {
   };
 
   const validateForm = () => {
-    if (!title.trim() || !content.trim() || !description.trim() || !category.trim()) {
-      setError('All fields must be filled out.');
+    if (
+      !title.trim() ||
+      !content.trim() ||
+      !description.trim() ||
+      !category.trim()
+    ) {
+      setError("All fields must be filled out.");
       return false;
     }
     return true;
@@ -62,23 +67,23 @@ const SubmitNews = () => {
       };
 
       // Update the document for today's date (if exists), or create a new one
-      const docRef = doc(db, 'news', todayDate); // Use today's date as the document ID
+      const docRef = doc(db, "news", todayDate); // Use today's date as the document ID
       await updateDoc(docRef, {
-        articles: arrayUnion(newsData) // Push the new article into the "articles" array
+        articles: arrayUnion(newsData), // Push the new article into the "articles" array
       });
 
-      alert('News submitted successfully!');
+      alert("News submitted successfully!");
     } catch (error) {
-      console.error('Error submitting news:', error);
-      setError('Failed to submit news. Please try again later.');
+      console.error("Error submitting news:", error);
+      setError("Failed to submit news. Please try again later.");
     } finally {
       setUploading(false);
       // Reset form fields
-      setTitle('');
-      setContent('');
+      setTitle("");
+      setContent("");
       setImage(null);
-      setDescription('');
-      setCategory('');
+      setDescription("");
+      setCategory("");
     }
   };
 
@@ -87,7 +92,9 @@ const SubmitNews = () => {
       <h2 className={styles.formTitle}>Submit Custom News</h2>
       <form onSubmit={handleSubmit}>
         <div className={styles.formGroup}>
-          <label htmlFor="title" className={styles.formLabel}>Title:</label>
+          <label htmlFor="title" className={styles.formLabel}>
+            Title:
+          </label>
           <input
             type="text"
             id="title"
@@ -99,7 +106,9 @@ const SubmitNews = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="content" className={styles.formLabel}>Content:</label>
+          <label htmlFor="content" className={styles.formLabel}>
+            Content:
+          </label>
           <textarea
             id="content"
             value={content}
@@ -110,7 +119,9 @@ const SubmitNews = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="image" className={styles.formLabel}>Image:</label>
+          <label htmlFor="image" className={styles.formLabel}>
+            Image:
+          </label>
           <input
             type="file"
             accept="image/*"
@@ -120,7 +131,9 @@ const SubmitNews = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="description" className={styles.formLabel}>Description:</label>
+          <label htmlFor="description" className={styles.formLabel}>
+            Description:
+          </label>
           <textarea
             id="description"
             value={description}
@@ -131,7 +144,9 @@ const SubmitNews = () => {
           />
         </div>
         <div className={styles.formGroup}>
-          <label htmlFor="category" className={styles.formLabel}>Category:</label>
+          <label htmlFor="category" className={styles.formLabel}>
+            Category:
+          </label>
           <input
             type="text"
             id="category"
@@ -143,8 +158,12 @@ const SubmitNews = () => {
           />
         </div>
         {error && <p className={styles.errorText}>{error}</p>}
-        <button type="submit" disabled={uploading} className={styles.submitButton}>
-          {uploading ? 'Submitting...' : 'Submit News'}
+        <button
+          type="submit"
+          disabled={uploading}
+          className={styles.submitButton}
+        >
+          {uploading ? "Submitting..." : "Submit News"}
         </button>
       </form>
     </div>

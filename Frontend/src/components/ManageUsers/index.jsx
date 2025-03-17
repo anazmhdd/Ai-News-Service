@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react';
-import { db} from '../../services/firebase'; // Ensure you import auth from firebase
-import { collection, getDocs, doc, deleteDoc } from 'firebase/firestore';
-import { deleteUser, getAuth } from 'firebase/auth';
+import { deleteUser, getAuth } from "firebase/auth";
+import { collection, deleteDoc, doc, getDocs } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { db } from "../../services/firebase"; // Ensure you import auth from firebase
 import styles from "./index.module.css";
 
 function ManageUsers() {
@@ -10,15 +10,15 @@ function ManageUsers() {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'users'));
-        const usersList = querySnapshot.docs.map(doc => ({
+        const querySnapshot = await getDocs(collection(db, "users"));
+        const usersList = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-        console.log('Fetched users:', usersList); // Log the fetched users
+        console.log("Fetched users:", usersList); // Log the fetched users
         setUsers(usersList);
       } catch (error) {
-        console.error('Error fetching users:', error);
+        console.error("Error fetching users:", error);
       }
     };
 
@@ -28,7 +28,7 @@ function ManageUsers() {
   const handleDelete = async (userId) => {
     try {
       // Delete user from Firestore
-      await deleteDoc(doc(db, 'users', userId));
+      await deleteDoc(doc(db, "users", userId));
 
       // Delete user from Firebase Authentication
       const auth = getAuth(); // Ensure you use the appropriate auth instance
@@ -37,13 +37,13 @@ function ManageUsers() {
         await deleteUser(user); // Delete the current user's auth account
       } else {
         // Handle deletion for other users if necessary
-        console.error('User is not currently logged in or ID mismatch');
+        console.error("User is not currently logged in or ID mismatch");
       }
 
       // Update the UI
-      setUsers(users.filter(user => user.id !== userId));
+      setUsers(users.filter((user) => user.id !== userId));
     } catch (error) {
-      console.error('Error deleting user:', error);
+      console.error("Error deleting user:", error);
     }
   };
 
@@ -61,13 +61,13 @@ function ManageUsers() {
             </tr>
           </thead>
           <tbody>
-            {users.map(user => (
+            {users.map((user) => (
               <tr key={user.id}>
                 <td>{user.id}</td>
                 <td>{user.role}</td>
                 <td>{user.email}</td>
                 <td>
-                  <button 
+                  <button
                     onClick={() => handleDelete(user.id)}
                     className={styles.deleteButton}
                   >

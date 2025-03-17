@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { collection, query, where, getDocs } from "firebase/firestore";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { db } from "../../services/firebase"; // Adjust the path based on your project structure
 import styles from "./index.module.css";
-import { Link } from "react-router-dom";
 
 export default function AdsCard() {
   const [ads, setAds] = useState([]);
@@ -24,14 +24,15 @@ export default function AdsCard() {
         }));
 
         // Filter ads by expiry date
-        const validAds = approvedAds.filter(ad => {
+        const validAds = approvedAds.filter((ad) => {
           const expiryDate = new Date(ad.expiryDate); // Convert string to Date
           return expiryDate > new Date(); // Check if the ad is still valid
         });
 
         // Choose a random ad from valid ads if available
         if (validAds.length > 0) {
-          const randomAd = validAds[Math.floor(Math.random() * validAds.length)];
+          const randomAd =
+            validAds[Math.floor(Math.random() * validAds.length)];
           setAds([randomAd]); // Set ads to only the randomly selected ad
         } else {
           setAds([]); // Clear ads if none are valid

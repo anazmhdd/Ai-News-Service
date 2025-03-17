@@ -1,7 +1,13 @@
-import { useEffect, useState } from 'react';
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  updateDoc,
+} from "firebase/firestore";
+import { useEffect, useState } from "react";
 import { db } from "../../services/firebase";
-import { collection, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
-import styles from './index.module.css'; // Adjust the path as necessary
+import styles from "./index.module.css"; // Adjust the path as necessary
 
 const ManagePromoContent = () => {
   const [promos, setPromos] = useState([]);
@@ -12,7 +18,7 @@ const ManagePromoContent = () => {
   // Fetch promo content function
   const fetchPromoContent = async () => {
     setLoading(true);
-    const querySnapshot = await getDocs(collection(db, 'promos'));
+    const querySnapshot = await getDocs(collection(db, "promos"));
     const promoData = querySnapshot.docs.map((doc) => ({
       ...doc.data(),
       id: doc.id,
@@ -26,7 +32,7 @@ const ManagePromoContent = () => {
   }, []);
 
   const handleStatusUpdate = async (id, status) => {
-    const promoDocRef = doc(db, 'promos', id);
+    const promoDocRef = doc(db, "promos", id);
     await updateDoc(promoDocRef, { status });
 
     // Update the specific promo's status locally without re-fetching all promos
@@ -39,7 +45,7 @@ const ManagePromoContent = () => {
   };
 
   const handleDelete = async (id) => {
-    const promoDocRef = doc(db, 'promos', id);
+    const promoDocRef = doc(db, "promos", id);
     await deleteDoc(promoDocRef);
 
     // Remove the specific promo from state without re-fetching all promos
@@ -69,18 +75,26 @@ const ManagePromoContent = () => {
           <p>No promotional content to review.</p>
         ) : (
           promos.map((promo) => (
-            <div 
-              key={promo.id} 
-              className={styles.promoCard} 
+            <div
+              key={promo.id}
+              className={styles.promoCard}
               onClick={() => openModal(promo)} // Open modal on card click
             >
               <h3 className={styles.promoTitle}>{promo.title}</h3>
               {/* Show a short description instead of the full content */}
               <p className={styles.promoContent}>
-                {promo.content.length > 50 ? `${promo.content.substring(0, 50)}...` : promo.content}
+                {promo.content.length > 50
+                  ? `${promo.content.substring(0, 50)}...`
+                  : promo.content}
               </p>
-              <p className={styles.promoDate}><b>Date:</b> {promo.submittedDate}</p>
-              <img src={promo.imageUrl} alt={promo.title} className={styles.promoImage} />
+              <p className={styles.promoDate}>
+                <b>Date:</b> {promo.submittedDate}
+              </p>
+              <img
+                src={promo.imageUrl}
+                alt={promo.title}
+                className={styles.promoImage}
+              />
               <p className={styles.statusLabel}>Status: {promo.status}</p>
             </div>
           ))
@@ -90,34 +104,48 @@ const ManagePromoContent = () => {
       {isModalOpen && selectedPromo && (
         <div className={styles.modalOverlay}>
           <div className={styles.modalContent}>
-            <img src={selectedPromo.imageUrl} alt={selectedPromo.title} className={styles.modalImage} />
+            <img
+              src={selectedPromo.imageUrl}
+              alt={selectedPromo.title}
+              className={styles.modalImage}
+            />
             <h2 className={styles.modalTitle}>{selectedPromo.title}</h2>
-            <p className={styles.modalDate}><b>Submitted By</b> {selectedPromo.submittedBy}</p>
-            <p className={styles.modalDate}><b>Submitted Date:</b> {selectedPromo.submittedDate}</p>
-            <p className={styles.modalDate}><b>Expiry Date:</b> {selectedPromo.expiryDate}</p>
+            <p className={styles.modalDate}>
+              <b>Submitted By</b> {selectedPromo.submittedBy}
+            </p>
+            <p className={styles.modalDate}>
+              <b>Submitted Date:</b> {selectedPromo.submittedDate}
+            </p>
+            <p className={styles.modalDate}>
+              <b>Expiry Date:</b> {selectedPromo.expiryDate}
+            </p>
             <p className={styles.modalContentText}>{selectedPromo.content}</p>
 
             {/* Action buttons based on promo status */}
             <div className={styles.actionButtons}>
-              {selectedPromo.status === 'approved' && (
-                <button 
-                  className={`${styles.button} ${styles.disapproveButton}`} 
-                  onClick={() => handleStatusUpdate(selectedPromo.id, 'pending')}
+              {selectedPromo.status === "approved" && (
+                <button
+                  className={`${styles.button} ${styles.disapproveButton}`}
+                  onClick={() =>
+                    handleStatusUpdate(selectedPromo.id, "pending")
+                  }
                 >
                   Disapprove
                 </button>
               )}
 
-              {selectedPromo.status === 'rejected' && (
+              {selectedPromo.status === "rejected" && (
                 <>
-                  <button 
-                    className={`${styles.button} ${styles.approveButton}`} 
-                    onClick={() => handleStatusUpdate(selectedPromo.id, 'approved')}
+                  <button
+                    className={`${styles.button} ${styles.approveButton}`}
+                    onClick={() =>
+                      handleStatusUpdate(selectedPromo.id, "approved")
+                    }
                   >
                     Approve
                   </button>
-                  <button 
-                    className={`${styles.button} ${styles.deleteButton}`} 
+                  <button
+                    className={`${styles.button} ${styles.deleteButton}`}
                     onClick={() => handleDelete(selectedPromo.id)}
                   >
                     Delete
@@ -125,17 +153,21 @@ const ManagePromoContent = () => {
                 </>
               )}
 
-              {selectedPromo.status === 'pending' && (
+              {selectedPromo.status === "pending" && (
                 <>
-                  <button 
-                    className={`${styles.button} ${styles.approveButton}`} 
-                    onClick={() => handleStatusUpdate(selectedPromo.id, 'approved')}
+                  <button
+                    className={`${styles.button} ${styles.approveButton}`}
+                    onClick={() =>
+                      handleStatusUpdate(selectedPromo.id, "approved")
+                    }
                   >
                     Approve
                   </button>
-                  <button 
-                    className={`${styles.button} ${styles.rejectButton}`} 
-                    onClick={() => handleStatusUpdate(selectedPromo.id, 'rejected')}
+                  <button
+                    className={`${styles.button} ${styles.rejectButton}`}
+                    onClick={() =>
+                      handleStatusUpdate(selectedPromo.id, "rejected")
+                    }
                   >
                     Reject
                   </button>
@@ -143,7 +175,9 @@ const ManagePromoContent = () => {
               )}
             </div>
 
-            <button className={styles.closeButton} onClick={closeModal}>Close</button>
+            <button className={styles.closeButton} onClick={closeModal}>
+              Close
+            </button>
           </div>
         </div>
       )}

@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import styles from "./index.module.css";
-import { Slide } from "react-slideshow-image";
-import axios from "axios";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import BookmarkBorderRoundedIcon from "@mui/icons-material/BookmarkBorderRounded";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
-import { NewsCard1 } from "../NewsCards";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { Slide } from "react-slideshow-image";
+import { getDate, shuffleArray } from "../../services/functions";
 import Loader from "../Loader/Loader";
-import { getDate,shuffleArray } from "../../services/functions";
+import { NewsCard1 } from "../NewsCards";
+import styles from "./index.module.css";
 
 const categories = [
   "lifestyle",
@@ -31,21 +31,25 @@ function TopNews() {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        const url = `${import.meta.env.VITE_API}/news?date=${getDate()}&category=all`;
+        const url = `${
+          import.meta.env.VITE_API
+        }/news?date=${getDate()}&category=all`;
         const { data } = await axios.get(url);
         const newsByCategory = categories.map((category) => {
-          const filteredNews = data.data?.filter((newsItem) => newsItem.category === category);
-          return filteredNews?.[0]; 
+          const filteredNews = data.data?.filter(
+            (newsItem) => newsItem.category === category
+          );
+          return filteredNews?.[0];
         });
-  
-        setNewsData1(newsByCategory.filter(Boolean)); 
+
+        setNewsData1(newsByCategory.filter(Boolean));
       } catch (error) {
         console.error("Error fetching news:", error);
       } finally {
         setLoading(false);
       }
     };
-  
+
     fetchNews();
   }, []);
 
@@ -55,8 +59,8 @@ function TopNews() {
         const response = await axios.get(`${import.meta.env.VITE_API}/news`, {
           params: {
             date: getDate(),
-            category: "all"
-          }
+            category: "all",
+          },
         });
         setNewsData2(response.data.data || []); // Ensures newsData2 is an array
       } catch (err) {
@@ -65,12 +69,12 @@ function TopNews() {
     };
 
     fetchNews();
-  }, []); 
+  }, []);
 
   return (
     <div id={styles.topNews}>
       {loading ? (
-     <Loader />
+        <Loader />
       ) : (
         <>
           <div className={styles.topNewsCol1}>
@@ -101,12 +105,12 @@ function TopNews() {
                         </p>
                         <hr className={styles.hrline} />
                         <a href={`/news/${encodeURIComponent(news.title)}`}>
-                        <button>
-                          Read more
-                          <ArrowForwardRoundedIcon
-                            className={styles.arrowForwardRoundedIcon}
-                          />
-                        </button>
+                          <button>
+                            Read more
+                            <ArrowForwardRoundedIcon
+                              className={styles.arrowForwardRoundedIcon}
+                            />
+                          </button>
                         </a>
                       </div>
                     </div>
@@ -118,15 +122,17 @@ function TopNews() {
             )}
           </div>
           <div className={styles.topNewsCol2}>
-          {newsData2.length > 0 ? (
-             shuffleArray(newsData2).slice(3, 7).map((item, index) => (
-                <NewsCard1 
-                  key={index}
-                  imageUrl={item.urlToImage} 
-                  title={item.title} 
-                  date={item.publishedAt} 
-                />
-              ))
+            {newsData2.length > 0 ? (
+              shuffleArray(newsData2)
+                .slice(3, 7)
+                .map((item, index) => (
+                  <NewsCard1
+                    key={index}
+                    imageUrl={item.urlToImage}
+                    title={item.title}
+                    date={item.publishedAt}
+                  />
+                ))
             ) : (
               <p>No additional news available.</p>
             )}

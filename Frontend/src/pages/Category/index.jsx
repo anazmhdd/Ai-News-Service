@@ -7,7 +7,8 @@ export default function Index() {
   return (
     <div>
       <NavBar />
-      <CategorySection cat={cat} /> {/* Pass the 'category' to the CategorySection component */}
+      <CategorySection cat={cat} />{" "}
+      {/* Pass the 'category' to the CategorySection component */}
     </div>
   );
 }

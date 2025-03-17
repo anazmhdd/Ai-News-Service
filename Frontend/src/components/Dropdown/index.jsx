@@ -3,7 +3,7 @@ import styles from "./styles.module.css";
 
 // import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
-const CustomDropdown = ({category}) => (
+const CustomDropdown = ({ category }) => (
   <div className={styles.dropdownContainer}>
     <div className={styles.dropdown}>
       <button className={styles.dropbtn}>

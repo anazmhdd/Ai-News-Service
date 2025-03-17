@@ -1,18 +1,16 @@
 import styles from "./styles.module.css";
 function Loader() {
   return (
-      <div className={styles.typing_indicator}>
-        <div className={styles.typing_circle}></div>
-        <div className={styles.typing_circle}></div>
-        <div className={styles.typing_circle}></div>
-        <div className={styles.typing_shadow}></div>
-        <div className={styles.typing_shadow}></div>
-        <div className={styles.typing_shadow}></div>
-      </div>
+    <div className={styles.typing_indicator}>
+      <div className={styles.typing_circle}></div>
+      <div className={styles.typing_circle}></div>
+      <div className={styles.typing_circle}></div>
+      <div className={styles.typing_shadow}></div>
+      <div className={styles.typing_shadow}></div>
+      <div className={styles.typing_shadow}></div>
+    </div>
   );
 }
-
-
 
 const Loader2 = () => {
   return (
@@ -35,27 +33,29 @@ const Loader2 = () => {
   );
 };
 
-const Loader4= () => {
+const Loader4 = () => {
   return (
     <div className={styles.card}>
       {/* <div className={`${styles.card__skeleton} ${styles.card__title}`}></div> */}
-      <div className={`${styles.card__skeleton} ${styles.card__description}`}></div>
+      <div
+        className={`${styles.card__skeleton} ${styles.card__description}`}
+      ></div>
     </div>
   );
 };
-const Loader3= () => {
+const Loader3 = () => {
   return (
-      <div className={`${styles.card__skeleton} ${styles.card__title}`}></div>
+    <div className={`${styles.card__skeleton} ${styles.card__title}`}></div>
   );
 };
 
-const Loader5 =()=>{
-  return(
+const Loader5 = () => {
+  return (
     <div className={styles.loader5Container}>
-<div className={styles.loader5}></div>
-</div>
-  )
-}
+      <div className={styles.loader5}></div>
+    </div>
+  );
+};
 
-export {Loader2,Loader3,Loader4,Loader5};
+export { Loader2, Loader3, Loader4, Loader5 };
 export default Loader;
