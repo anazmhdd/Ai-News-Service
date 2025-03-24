@@ -7,3 +7,4 @@ firestore.rules
 firebase.json
 firestore.indexes.json
 .firebase
+.vercel
