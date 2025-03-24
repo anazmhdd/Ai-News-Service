@@ -23,7 +23,9 @@ function NavBar() {
           <LogoutButton />
         </div>
         <a href="/" className={styles.logoContainer}>
-          <img src={logo} alt="" />
+          <div className={styles.logo}>
+            <img src={logo} alt="" />
+          </div>
           <h1>
             ew <span>s</span>cad<span>e</span>{" "}
           </h1>

@@ -2,14 +2,13 @@
   "version": 2,
   "builds": [
     {
-      "src": "./server.js",
+      "src": "Backend/server.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "Backend/firebase.js",
       "use": "@vercel/node"
     }
   ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/server.js"
-    }
-  ]
+  "routes": [{ "src": "/.*", "dest": "/Backend/server.js" }]
 }

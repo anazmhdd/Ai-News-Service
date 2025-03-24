@@ -1,3 +1,9 @@
 "Backend/firebaseServiceAccount.json" 
-Backend/firebase.js
+# Backend/firebase.js
 Backend/firebaseServiceAccount.json
+storage.rules
+firestore.rules
+.firebaserc
+firebase.json
+firestore.indexes.json
+.firebase

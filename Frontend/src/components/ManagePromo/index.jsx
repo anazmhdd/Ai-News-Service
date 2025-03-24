@@ -83,9 +83,9 @@ const ManagePromoContent = () => {
               <h3 className={styles.promoTitle}>{promo.title}</h3>
               {/* Show a short description instead of the full content */}
               <p className={styles.promoContent}>
-                {promo.content.length > 50
+                {promo.content?.length > 50
                   ? `${promo.content.substring(0, 50)}...`
-                  : promo.content}
+                  : promo.content || "No content available"}
               </p>
               <p className={styles.promoDate}>
                 <b>Date:</b> {promo.submittedDate}

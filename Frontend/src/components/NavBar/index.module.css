@@ -44,6 +44,10 @@
   display: flex;
   margin-top: 1rem;
 }
+
+.logo {
+  margin-top: -15px;
+}
 #nav .navRow1 .logoContainer h1 span {
   font-family: inherit;
   color: var(--primaryclr);
