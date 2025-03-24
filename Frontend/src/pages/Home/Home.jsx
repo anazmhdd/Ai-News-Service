@@ -104,7 +104,7 @@ function OldHome() {
       </div>
 
       <footer className={styles.footer}>
-        <p>AI-Driven News Service &copy; 2024</p>
+        <p>AI-Driven News Service &copy; 2025</p>
       </footer>
     </div>
   );
