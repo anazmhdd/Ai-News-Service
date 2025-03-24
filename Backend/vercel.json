@@ -2,13 +2,16 @@
   "version": 2,
   "builds": [
     {
-      "src": "server.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "firebase.js",
+      "src": "Backend/server.js",
       "use": "@vercel/node"
     }
   ],
-  "routes": [{ "src": "/.*", "dest": "/server.js" }]
+  "routes": [
+    { "src": "/news", "dest": "/api/news" },
+    { "src": "/breaking", "dest": "/api/breaking" },
+    { "src": "/news/save", "dest": "/api/news/save" },
+    { "src": "/news/by-title", "dest": "/api/news/by-title" },
+    { "src": "/news/delete", "dest": "/api/news/delete" },
+    { "src": "/.*", "dest": "/api" }
+  ]
 }
