@@ -2,19 +2,19 @@
   "version": 2,
   "builds": [
     {
-      "src": "sever.js",
+      "src": "server.js",
       "use": "@vercel/node",
       "config": {
-        "maxDuration": 30
+        "maxDuration": 60
       }
     }
   ],
   "routes": [
-    { "src": "/news", "dest": "/news" },
-    { "src": "/breaking", "dest": "/breaking" },
-    { "src": "/news/save", "dest": "/news/save" },
-    { "src": "/news/by-title", "dest": "/news/by-title" },
-    { "src": "/news/delete", "dest": "/news/delete" },
-    { "src": "/.*", "dest": "/" }
+    { "src": "/news", "dest": "/server.js" },
+    { "src": "/breaking", "dest": "/server.js" },
+    { "src": "/news/save", "dest": "/server.js" },
+    { "src": "/news/by-title", "dest": "/server.js" },
+    { "src": "/news/delete", "dest": "/server.js" },
+    { "src": "/.*", "dest": "/server.js" }
   ]
 }
