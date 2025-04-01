@@ -11,10 +11,8 @@
   ],
   "routes": [
     { "src": "/news", "dest": "/server.js" },
+    { "src": "/news/(.*)", "dest": "/server.js" },
     { "src": "/breaking", "dest": "/server.js" },
-    { "src": "/news/save", "dest": "/server.js" },
-    { "src": "/news/by-title", "dest": "/server.js" },
-    { "src": "/news/delete", "dest": "/server.js" },
     { "src": "/.*", "dest": "/server.js" }
   ]
 }

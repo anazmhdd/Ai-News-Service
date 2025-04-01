@@ -1,3 +1,3 @@
 "Ai-News-Service"
 
-Backend URL- https://ai-news-service.vercel.app/
+Backend URL- https://ai-news-service-backend.vercel.app/

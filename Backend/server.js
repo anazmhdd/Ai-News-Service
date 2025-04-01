@@ -10,17 +10,17 @@ import scrapNews from "./services/scrap.js";
 const app = express();
 const port = process.env.PORT || 3000;
 
-app.use(
-  cors({
-    origin: [
-      "https://ai-news-service-20290.web.app",
-      "https://ai-news-service.vercel.app",
-    ],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
-// app.use(cors());
+// app.use(
+//   cors({
+//     origin: [
+//       "https://ai-news-service-20290.web.app",
+//       "https://ai-news-service-backend.vercel.app",
+//     ],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     allowedHeaders: ["Content-Type", "Authorization"],
+//   })
+// );
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -240,8 +240,8 @@ app.get("/", async (req, res) => {
   res.send("API is live");
 });
 
-// app.listen(port, () => {
-//   console.log(`Server running at http://localhost:${port}`);
-// });
+app.listen(port, () => {
+  console.log(`Server running at http://localhost:${port}`);
+});
 
-export default app;
+// export default app;
